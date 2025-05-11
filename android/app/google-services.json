@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "199010426925",
+    "project_id": "applist-3e62e",
+    "storage_bucket": "applist-3e62e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199010426925:android:d260619f3870a9c3d618a4",
+        "android_client_info": {
+          "package_name": "com.anonymous.BTLT"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgVecRLw0Rtl0dpV6SRn1rvJdyy8wMJGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

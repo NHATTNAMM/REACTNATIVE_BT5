@@ -1,0 +1,58 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        // Android SDK & tools versions
+        buildToolsVersion = findProperty('android.buildToolsVersion') ?: '35.0.0'
+        minSdkVersion = Integer.parseInt(findProperty('android.minSdkVersion') ?: '24')
+        compileSdkVersion = Integer.parseInt(findProperty('android.compileSdkVersion') ?: '35')
+        targetSdkVersion = Integer.parseInt(findProperty('android.targetSdkVersion') ?: '34')
+
+        // Kotlin
+        kotlinVersion = findProperty('android.kotlinVersion') ?: '1.9.25'
+
+        // NDK
+        ndkVersion = "26.1.10909125"
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        // Android Gradle plugin
+        classpath 'com.android.tools.build:gradle:8.2.0' // or your matching version
+        // React Native plugin
+        classpath 'com.facebook.react:react-native-gradle-plugin'
+        // Kotlin Gradle plugin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        // Firebase Google Services plugin
+        classpath 'com.google.gms:google-services:4.4.2'
+    }
+}
+
+apply plugin: "com.facebook.react.rootproject"
+
+allprojects {
+    repositories {
+        // React Native core (JS, Obj-C, Android binaries) from npm
+        maven {
+            url(new File(['node', '--print', "require.resolve('react-native/package.json')"]
+                .execute(null, rootDir).text.trim(), '../android'))
+        }
+
+        // JSC for Android (JavaScriptCore)
+        maven {
+            url(new File(['node', '--print', "require.resolve('jsc-android/package.json', { paths: [require.resolve('react-native/package.json')] })"]
+                .execute(null, rootDir).text.trim(), '../dist'))
+        }
+
+        // Standard repos
+        google()
+        mavenCentral()
+
+        // JitPack for third-party libraries
+        maven { url 'https://www.jitpack.io' }
+    }
+}
